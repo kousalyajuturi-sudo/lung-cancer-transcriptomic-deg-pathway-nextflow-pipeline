@@ -155,12 +155,24 @@ if os.path.exists(meta_file):
 
     meta_html = meta_df.to_html(index=False)
 
-    meta_link = "<a href='../samples.tsv'>Download full metadata</a>"
-
+    meta_link = "<a href='../../scripts/samples.tsv'>Download full metadata</a>"
 else:
 
     meta_html = "<p>Metadata file not found</p>"
     meta_link = ""
+
+# ----------------------------
+# 5a. Differential Expression Results CSV
+# ----------------------------
+plots_dir = os.path.join(project_root, "plots")  # DESeq2 CSV location
+deseq_csv_path = os.path.join(plots_dir, "deseq_results.csv")
+
+if os.path.exists(deseq_csv_path):
+    deseq_csv_link = f'<a href="{os.path.relpath(deseq_csv_path, final_report_dir)}" download>deseq_results.csv</a>'
+    print("Found deseq_results.csv in plots/")
+else:
+    deseq_csv_link = "<p>deseq_results.csv not found in plots/</p>"
+    print("deseq_results.csv not found in plots/")
 
 # ------------------------------------------------
 # 5. Collect Plots from pipeline
@@ -383,7 +395,6 @@ Tumor and Normal.
 {meta_html}
 
 <p>{meta_link}</p>
-
 <h2>5. Differential Expression Analysis</h2>
 
 <p>
@@ -392,6 +403,9 @@ using a negative binomial distribution and identifies genes that are significant
 downregulated between tumor and normal samples.
 </p>
 
+<h2>5a. Differential Expression Results CSV</h2>
+<p>Download the DESeq2 results used to generate all plots:</p>
+<p>{deseq_csv_link}</p>
 <h2>6. Differential Expression Plots</h2>
 
 <p>
