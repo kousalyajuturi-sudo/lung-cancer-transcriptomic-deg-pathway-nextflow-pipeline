@@ -1,0 +1,11 @@
+Download reference files:
+
+GTF:
+https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_45/gencode.v45.annotation.gtf.gz
+
+Genome:
+https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_45/GRCh38.primary_assembly.genome.fa.gz
+
+HISAT2 index:
+Build using:
+hisat2-build GRCh38.primary_assembly.genome.fa grch38_index
